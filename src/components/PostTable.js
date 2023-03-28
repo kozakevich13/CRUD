@@ -7,6 +7,7 @@ const PostTable = (props) => (
         <th className="border-2 text-center pl-20 pr-20">Title</th>
         <th className="border-2 text-center pl-10 pr-10">Icon</th>
         <th className="border-2 text-center pl-20 pr-20">Text</th>
+        <th className="border-2 text-center pl-20 pr-20">URL</th>
         <th className="border-2 text-center pl-20 pr-20">Actions</th>
       </tr>
     </thead>
@@ -22,6 +23,7 @@ const PostTable = (props) => (
                 )}
             </td>
             <td className="border-2 text-center pl-2 pr-2">{post.text}</td>
+            <td className="border-2 text-center pl-2 pr-2">{post.url}</td>
             <td className="border-2 pr-5 pl-5 " >
               <button
                 className="bg-blue-500 text-white py-2 m-2 px-4 rounded hover:bg-blue-600"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const EditPostForm = (props) => {
-  const initialFormState = { id: 12321, title: "", image: "", text: "" };
+  const initialFormState = { id: 12321, title: "", image: "", text: "", url: "" };
   const [post, setPost] = useState(
     props.editing ? props.currentPost : initialFormState
   );
@@ -26,7 +26,7 @@ const EditPostForm = (props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (!post.title || !post.text ) return;
+        if (!post.title || !post.text || !post.url ) return;
 
         props.editing ? props.updatePost(post.id, post) : props.addPost(post);
         resetAddPost();
@@ -57,6 +57,15 @@ const EditPostForm = (props) => {
         value={post.text}
         onChange={handleInputChange}
       />
+      <label className="m-2 font-semibold">URL:</label>
+      <input
+        className="border-2"
+        type="text"
+        title="url"
+        value={post.url}
+        onChange={handleInputChange}
+      />
+      
 
       <button className="bg-green-500 text-white py-2 px-4 m-2 rounded hover:bg-green-600">{props.editing ? "Update post" : "Add post"}</button>
       {props.editing && (

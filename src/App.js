@@ -4,7 +4,7 @@ import EditPostForm from "./components/EditPostForm"
 import axios from "axios";
 
 const App = () => {
-  const initialFormState = { id: null, title: "", text: "", image: "" };
+  const initialFormState = { id: null, title: "", text: "", image: "", url: "" };
   const [editing, setEditing] = useState(false);
   const [currentPost, setCurrentPost] = useState(initialFormState);
   const [data, setData] = useState([]);
@@ -14,7 +14,6 @@ const App = () => {
     const fetchData = async () => {
       const result = await axios.get(URL);
       setData(result.data);
-      console.log(result)
     };
     fetchData();
   }, []);
@@ -25,7 +24,7 @@ const App = () => {
       title: post.title,
       text: post.text,
       image: post.image,
-      url: '',
+      url: post.url,
       active: 1,
       sort_order: 1,
       created_at: '',
@@ -50,7 +49,6 @@ const App = () => {
     })
     .then(response => {
         setData(data.filter((post) => post.id !== id));
-        console.log('Success:', response);
     })
     .catch(error => {
         console.log('Error:', error);
