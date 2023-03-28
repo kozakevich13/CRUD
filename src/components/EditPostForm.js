@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { uuid } from 'uuidv4';
 
 const EditPostForm = (props) => {
   const initialFormState = { id: "", title: "", image: "", text: "", url: "" };
@@ -7,7 +6,6 @@ const EditPostForm = (props) => {
     props.editing ? props.currentPost : initialFormState
   );
 
-//   console.log(uuid());
 
   const handleInputChange = (event) => {
     const { title, value } = event.target;
