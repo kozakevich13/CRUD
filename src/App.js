@@ -14,7 +14,6 @@ const App = () => {
     const fetchData = async () => {
       const result = await axios.get(URL);
       setData(result.data);
-      console.log(result.data)
     };
     fetchData();
   }, []);
