@@ -43,8 +43,6 @@ const App = () => {
     setData(data.map((post) => (post.id === id ? updatedUser : post)));
   };
 
-  console.log(data)
-
   return (
     <div className="flex justify-center items-center mt-10">
       <div className="flex-row">

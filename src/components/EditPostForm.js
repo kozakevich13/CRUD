@@ -27,7 +27,7 @@ const EditPostForm = (props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (!post.title || !post.text || !post.image) return;
+        if (!post.title || !post.text ) return;
 
         props.editing ? props.updatePost(post.id, post) : props.addPost(post);
         resetAddPost();

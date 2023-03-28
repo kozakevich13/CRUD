@@ -14,8 +14,20 @@ const PostTable = (props) => (
       {props.posts.length > 0 ? (
         props.posts.map((post) => (
           <tr className="border-2" key={post.id}>
+
+
+ 
+
+
+{/* <img className=" w-10 h-10 mt-2 rounded-full" src={post.image} alt="icon"></img> */}
+
             <td className="border-2 text-center pl-2 pr-2">{post.title}</td>
-            <td className="flex justify-center items-center pl-2 pr-2"><img className=" w-10 h-10 mt-2 rounded-full" src={post.image} alt="icon"></img></td>
+            <td className="flex justify-center items-center pl-2 pr-2">{post.image ? (
+                    <img className="w-10 h-10 mt-2 rounded-full" src={post.image} alt="Фото" />
+                ) : (
+                    <p>no icon</p>
+                )}
+            </td>
             <td className="border-2 text-center pl-2 pr-2">{post.text}</td>
             <td className="border-2 pr-5 pl-5 " >
               <button
