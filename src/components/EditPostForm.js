@@ -22,7 +22,6 @@ const EditPostForm = (props) => {
     props.setCurrentPost(initialFormState);
   };
 
-  console.log(post);
 
   return (
     <form
@@ -34,25 +33,28 @@ const EditPostForm = (props) => {
         resetAddPost();
       }}
     >
-      <label>Title</label>
+      <label className="m-2 font-semibold">Title:</label>
       <input
+        className="border-2"
         type="text"
         title="title"
         value={post.title}
         onChange={handleInputChange}
       />
-      <label>Text</label>
+      <label className="m-2 font-semibold">Text:</label>
       <input
+        className="border-2"
         type="text"
         title="text"
         value={post.text}
         onChange={handleInputChange}
       />
-      <button>{props.editing ? "Update post" : "Add post"}</button>
+      
+      <button className="bg-green-500 text-white py-2 px-4 m-2 rounded hover:bg-green-600">{props.editing ? "Update post" : "Add post"}</button>
       {props.editing && (
         <button
           onClick={resetAddPost}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-blue-600"
         >
           Cancel
         </button>

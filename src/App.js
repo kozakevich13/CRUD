@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import UserTable from "/src/components/UserTable";
-import EditUserForm from "/src/components/EditUserForm";
+import PostTable from "./components/PostTable"
+import EditPostForm from "./components/EditPostForm"
 import axios from "axios";
-import "./tailwind.output.css";
 
 const App = () => {
   const usersData = [
@@ -45,18 +44,26 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1>CRUD App</h1>
+    <div className="flex justify-center items-center mt-10">
       <div className="flex-row">
         <div className="flex-large">
           <div>
-            <h2>{editing ? "Edit post" : "Add post"}</h2>
-         
+            <h2 className="flex justify-center items-center font-semibold">{editing ? "Edit post" : "Add post"}</h2>
+            <EditPostForm
+              editing={editing}
+              setEditing={setEditing}
+              currentPost={currentPost}
+              setCurrentPost={setCurrentPost}
+              updatePost={updatePost}
+              addPost={addPost}
+            />
           </div>
         </div>
-        <div className="flex-large">
-          <h2>View data</h2>
-         
+        <div >
+          <h2 className="text-center font-semibold mb-2">View data</h2>
+          <div className="flex justify-center items-center"> 
+           <PostTable posts={data} editPost={editPost} deletePost={deletePost} />
+          </div>
         </div>
       </div>
     </div>

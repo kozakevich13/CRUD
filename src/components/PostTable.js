@@ -3,34 +3,31 @@ import React from "react";
 const PostTable = (props) => (
   <table>
     <thead>
-      <tr>
-        <th>Title</th>
-        <th>text</th>
-        <th>Actions</th>
+      <tr className="border-2">
+        <th className="border-2 text-center pl-20 pr-20">Title</th>
+        <th className="border-2 text-center pl-20 pr-20">Text</th>
+        <th className="border-2 text-center pl-20 pr-20">Actions</th>
       </tr>
     </thead>
     <tbody>
       {props.posts.length > 0 ? (
         props.posts.map((post) => (
-          <tr key={post.id}>
-            {/* <td>{post.name}</td>
-            <td>{post.username}</td> */}
-
-            <td>{post.title}</td>
-            <td>{post.text}</td>
-            <td>
+          <tr className="border-2" key={post.id}>
+            <td className="border-2 text-center pl-2 pr-2">{post.title}</td>
+            <td className="border-2 text-center pl-2 pr-2">{post.text}</td>
+            <td className="border-2 pr-5 pl-5 " >
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white py-2 m-2 px-4 rounded hover:bg-blue-600"
                 onClick={() => {
-                  props.editRow(post);
+                  props.editPost(post);
                 }}
               >
                 Edit
               </button>
 
               <button
-                className="button muted-button"
-                onClick={() => props.deleteUser(post.id)}
+                className="bg-red-500 text-white py-2 px-4 m-2 rounded hover:bg-red-600"
+                onClick={() => props.deletePost(post.id)}
               >
                 Delete
               </button>
