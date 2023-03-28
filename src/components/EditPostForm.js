@@ -32,6 +32,7 @@ const EditPostForm = (props) => {
         props.editing ? props.updatePost(post.id, post) : props.addPost(post);
         resetAddPost();
       }}
+      className="flex justify-center items-center"
     >
       <label className="m-2 font-semibold">Title:</label>
       <input
@@ -49,7 +50,7 @@ const EditPostForm = (props) => {
         value={post.text}
         onChange={handleInputChange}
       />
-      
+
       <button className="bg-green-500 text-white py-2 px-4 m-2 rounded hover:bg-green-600">{props.editing ? "Update post" : "Add post"}</button>
       {props.editing && (
         <button
