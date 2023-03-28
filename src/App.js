@@ -14,13 +14,14 @@ const App = () => {
     const fetchData = async () => {
       const result = await axios.get(URL);
       setData(result.data);
+      console.log(result.data)
     };
     fetchData();
   }, []);
 
   const addPost = (post) => {
     axios.post(URL, {
-      id: post.id,
+      id: '',
       title: post.title,
       text: post.text,
       image: post.image,
