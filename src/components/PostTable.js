@@ -5,6 +5,7 @@ const PostTable = (props) => (
     <thead>
       <tr className="border-2">
         <th className="border-2 text-center pl-20 pr-20">Title</th>
+        <th className="border-2 text-center pl-10 pr-10">Icon</th>
         <th className="border-2 text-center pl-20 pr-20">Text</th>
         <th className="border-2 text-center pl-20 pr-20">Actions</th>
       </tr>
@@ -14,6 +15,7 @@ const PostTable = (props) => (
         props.posts.map((post) => (
           <tr className="border-2" key={post.id}>
             <td className="border-2 text-center pl-2 pr-2">{post.title}</td>
+            <td className="flex justify-center items-center pl-2 pr-2"><img className=" w-10 h-10 mt-2 rounded-full" src={post.image} alt="icon"></img></td>
             <td className="border-2 text-center pl-2 pr-2">{post.text}</td>
             <td className="border-2 pr-5 pl-5 " >
               <button

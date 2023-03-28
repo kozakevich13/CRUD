@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 const EditPostForm = (props) => {
-  const initialFormState = { id: null, title: "", text: "" };
+  const initialFormState = { id: null, title: "", image: "", text: "" };
   const [post, setPost] = useState(
     props.editing ? props.currentPost : initialFormState
   );
 
   const handleInputChange = (event) => {
-    const { title, value } = event.target;
+    const { title, value, image } = event.target;
 
-    setPost({ ...post, [title]: value });
+    setPost({ ...post, [title]: value, [image]: value });
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const EditPostForm = (props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (!post.title || !post.text) return;
+        if (!post.title || !post.text || !post.image) return;
 
         props.editing ? props.updatePost(post.id, post) : props.addPost(post);
         resetAddPost();
@@ -40,6 +40,14 @@ const EditPostForm = (props) => {
         type="text"
         title="title"
         value={post.title}
+        onChange={handleInputChange}
+      />
+      <label className="m-2 font-semibold">Icon:</label>
+      <input
+        className="border-2"
+        type="text"
+        title="image"
+        value={post.image}
         onChange={handleInputChange}
       />
       <label className="m-2 font-semibold">Text:</label>
