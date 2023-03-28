@@ -4,43 +4,83 @@ import EditPostForm from "./components/EditPostForm"
 import axios from "axios";
 
 const App = () => {
-  const usersData = [
-    { id: 1, title: "test", text: "test" },
-    { id: 2, title: "test2", text: "test2" }
-  ];
-  const initialFormState = { id: null, title: "", text: "" };
-
+  const initialFormState = { id: null, title: "", text: "", image: "" };
   const [editing, setEditing] = useState(false);
   const [currentPost, setCurrentPost] = useState(initialFormState);
-  const [data, setData] = useState(usersData);
+  const [data, setData] = useState([]);
+  const URL = 'https://yourtestapi.com/api/posts/'
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("https://yourtestapi.com/api/posts/");
+      const result = await axios.get(URL);
       setData(result.data);
+      console.log(result)
     };
     fetchData();
   }, []);
 
   const addPost = (post) => {
-    post.id = data.length + 1;
-    setData([...data, post]);
+    axios.post(URL, {
+      id: post.id,
+      title: post.title,
+      text: post.text,
+      image: post.image,
+      url: '',
+      active: 1,
+      sort_order: 1,
+      created_at: '',
+      updated_at: '',
+      deleted_at: null
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      setData([...data, response.data]);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  
   };
-
+  
   const deletePost = (id) => {
-    setEditing(false);
-    setData(data.filter((post) => post.id !== id));
+    axios.delete(`${URL}${id}`, {
+    })
+    .then(response => {
+        setData(data.filter((post) => post.id !== id));
+        console.log('Success:', response);
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
+    setData(data)
   };
 
   const editPost = (post) => {
     setEditing(true);
-
     setCurrentPost(post);
   };
 
-  const updatePost = (id, updatedUser) => {
+  const updatePost = async (id, updatedData) => {
     setEditing(false);
-    setData(data.map((post) => (post.id === id ? updatedUser : post)));
+    try {
+      const response = await axios.put(
+        `${URL}${id}`,
+        updatedData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+      setData(data.map((post) => (post.id === id ? updatedData : post)));
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };
 
   return (

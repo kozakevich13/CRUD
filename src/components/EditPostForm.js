@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 const EditPostForm = (props) => {
-  const initialFormState = { id: null, title: "", image: "", text: "" };
+  const initialFormState = { id: 12321, title: "", image: "", text: "" };
   const [post, setPost] = useState(
     props.editing ? props.currentPost : initialFormState
   );
 
   const handleInputChange = (event) => {
-    const { title, value, image } = event.target;
-
-    setPost({ ...post, [title]: value, [image]: value });
+    const { title, value } = event.target;
+    setPost({ ...post, [title]: value });
   };
 
   useEffect(() => {
